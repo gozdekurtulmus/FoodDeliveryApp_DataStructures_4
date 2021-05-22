@@ -6,11 +6,24 @@ public class Restaurant {
     private String cuisine;
     private int deliveryTime; // in minutes
 
+    
+     public Restaurant(String[] properties){
+        this.name = properties[3];
+        this.rating = Double.parseDouble(properties[4]);
+        this.cuisine = properties[5];
+        this.deliveryTime = Integer.parseInt(properties[6]);
+    }
 
 
-    public void updateCuisine(String category){ }
-    public void updateRating(double score){}
-    public void updateDeliveryTime(int deliveryTime){}
+    public void updateCuisine(String category){
+        this.cuisine = category;
+    }
+    public void updateRating(double score){
+        this.rating = score;
+    }
+    public void updateDeliveryTime(int deliveryTime){
+        this.deliveryTime = deliveryTime;
+    }
 
     public String getName() {
         return name;

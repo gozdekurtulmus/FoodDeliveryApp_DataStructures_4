@@ -17,24 +17,15 @@ public class PerformOperations {
     }
 
     public void start(){
-        System.out.println("Restaurants in descending order of rating:");
         operation1();
-        System.out.println("Foods in ascending order of price");
         operation2();
-        System.out.println();
         operation3();
         operation4();
-        System.out.println("\nRemoving foods that are more expensive than 80TRY.(Listed below)");
         operation5();
-        System.out.println("\nRemoving Restaurants that are rated less than 8.0 (Listed below)");
         operation6();
-        System.out.println("\nIncreased all food prices by 20%");
         operation7();
-        System.out.println("Cut all food stocks by half.");
         operation8();
-        System.out.println("\nRestaurants in descending order of rating:");
         operation1();
-        System.out.println("Foods in ascending order of price");
         operation2();
 
     }
@@ -48,9 +39,10 @@ public class PerformOperations {
             System.out.println("Name:" + element.getName() + "\tRating:" + element.getRating());
             element = stack.pop();
         }
+        System.out.println();
     }
 
-       public void operation2(){
+    public void operation2(){
         BinaryTree<Food> temp = priceTree;
         ArrayQueue<Food> queue = temp.traverseAscending();
         Food element = queue.dequeue();
@@ -61,17 +53,18 @@ public class PerformOperations {
         System.out.println();
     }
 
-        public void operation3(){
+    public void operation3(){
         BinaryTree<Restaurant> temp = deliveryTree;
         ArrayQueue<Restaurant> queue = temp.traverseAscending();
         Restaurant element = queue.dequeue();
         while(element!=null){
-           if(element.getName().contains("Pizza")){
-               System.out.println("The Pizza restaurant that has the shortest delivery time : "+ element.getName());
-               break;
-           }
+            if(element.getName().contains("Pizza")){
+                System.out.println("The Pizza restaurant that has the shortest delivery time : "+ element.getName());
+                break;
+            }
             element = queue.dequeue();
         }
+        System.out.println();
     }
 
     public void operation4(){
@@ -85,16 +78,19 @@ public class PerformOperations {
             }
             element = stack.pop();
         }
+        System.out.println();
     }
-    
+
     public void operation5(){
         QueueInterface<Food> ratingQueue = priceTree.traverseAscending();
         while (!ratingQueue.isEmpty()){
             Food element = ratingQueue.dequeue();
             if(element.getPrice() > 80.0){
                 ratingTree.remove(element.getPrice());
+                System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
             }
         }
+        System.out.println();
 
     }
     public void operation6(){
@@ -103,8 +99,10 @@ public class PerformOperations {
             Restaurant element = ratingQueue.dequeue();
             if(element.getRating() < 8.0){
                 ratingTree.remove(element.getRating());
+                System.out.println("Name: "+element.getRating()+"\tRating: "+element.getRating());
             }
         }
+        System.out.println();
 
     }
     public void operation7(){

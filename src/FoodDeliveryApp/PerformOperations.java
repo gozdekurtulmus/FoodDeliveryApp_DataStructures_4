@@ -17,9 +17,25 @@ public class PerformOperations {
     }
 
     public void start(){
+        System.out.println("Restaurants in descending order of rating:");
         operation1();
+        System.out.println("Foods in ascending order of price");
         operation2();
+        System.out.println();
         operation3();
+        operation4();
+        System.out.println("\nRemoving foods that are more expensive than 80TRY.(Listed below)");
+        operation5();
+        System.out.println("\nRemoving Restaurants that are rated less than 8.0 (Listed below)");
+        operation6();
+        System.out.println("\nIncreased all food prices by 20%");
+        operation7();
+        System.out.println("Cut all food stocks by half.");
+        operation8();
+        System.out.println("\nRestaurants in descending order of rating:");
+        operation1();
+        System.out.println("Foods in ascending order of price");
+        operation2();
 
     }
 

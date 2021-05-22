@@ -1,4 +1,4 @@
-package Iztechea;
+package FoodDeliveryApp;
 
 public interface StackInterface<T>{
     /*Adds a new entry to the top of the stack.

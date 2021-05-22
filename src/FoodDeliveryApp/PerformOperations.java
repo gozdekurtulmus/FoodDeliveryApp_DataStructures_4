@@ -57,18 +57,38 @@ public class PerformOperations {
         }
     }
     
+    public void operation5(){
+        QueueInterface<Food> ratingQueue = priceTree.traverseAscending();
+        while (!ratingQueue.isEmpty()){
+            Food element = ratingQueue.dequeue();
+            if(element.getPrice() > 80.0){
+                ratingTree.remove(element.getPrice());
+            }
+        }
+
+    }
+    public void operation6(){
+        QueueInterface<Restaurant> ratingQueue = ratingTree.traverseAscending();
+        while (!ratingQueue.isEmpty()){
+            Restaurant element = ratingQueue.dequeue();
+            if(element.getRating() < 8.0){
+                ratingTree.remove(element.getRating());
+            }
+        }
+
+    }
     public void operation7(){
-        QueueInterface stockqueue = stockTree.traverseAscending();
+        QueueInterface<Food> stockqueue = stockTree.traverseAscending();
         while (!stockqueue.isEmpty()){
-            Food food = (Food) stockqueue.dequeue();
+            Food food = stockqueue.dequeue();
             food.updatePrice(20);
         }
     }
 
     public void operation8(){
-        QueueInterface stockqueue = stockTree.traverseAscending();
+        QueueInterface<Food> stockqueue = stockTree.traverseAscending();
         while (!stockqueue.isEmpty()){
-            Food food = (Food) stockqueue.dequeue();
+            Food food = stockqueue.dequeue();
             food.updateStock(2);
         }
 

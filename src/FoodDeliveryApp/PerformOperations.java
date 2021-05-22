@@ -37,6 +37,14 @@ public class PerformOperations {
 
     }
 
+    public void operation8(){
+        QueueInterface stockqueue = stockTree.traverseAscending();
+        while (!stockqueue.isEmpty()){
+            Food food = (Food) stockqueue.dequeue();
+            food.updateStock(2);
+        }
+
+    }
 
     public ArrayStack<Restaurant> turnIntoDescending(ArrayQueue<Restaurant> queue){
         ArrayStack<Restaurant> stack = new ArrayStack<>();

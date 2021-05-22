@@ -1,10 +1,24 @@
 package FoodDeliveryApp;
 
-public class Food {
+public class Food implements Orderable {
     private String name;
     private double price;
     private int stock;
     private Restaurant restaurant;
+    
+     public Food(String[] properties){
+        this.name = properties[0];
+        this.price = Double.parseDouble(properties[1]);
+        this.stock = Integer.parseInt(properties[2]);
+        this.restaurant = new Restaurant(properties);
+    }
+
+    public void updatePrice(double price){
+        this.price = price;
+    }
+    public void updateStock(int stock){
+        this.stock = stock;
+    }
 
     public String getName() {
         return name;

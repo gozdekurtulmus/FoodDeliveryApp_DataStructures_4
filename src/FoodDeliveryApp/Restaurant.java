@@ -5,23 +5,27 @@ public class Restaurant {
     private double rating;
     private String cuisine;
     private int deliveryTime; // in minutes
+    private Food food;
 
-    
-     public Restaurant(String[] properties){
+
+    public Restaurant(String[] properties) {
         this.name = properties[3];
         this.rating = Double.parseDouble(properties[4]);
         this.cuisine = properties[5];
         this.deliveryTime = Integer.parseInt(properties[6]);
+        this.food = new Food(properties);
     }
 
 
-    public void updateCuisine(String category){
+    public void updateCuisine(String category) {
         this.cuisine = category;
     }
-    public void updateRating(double score){
+
+    public void updateRating(double score) {
         this.rating = score;
     }
-    public void updateDeliveryTime(int deliveryTime){
+
+    public void updateDeliveryTime(int deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
 
@@ -55,5 +59,13 @@ public class Restaurant {
 
     public void setDeliveryTime(int deliveryTime) {
         this.deliveryTime = deliveryTime;
+    }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
     }
 }

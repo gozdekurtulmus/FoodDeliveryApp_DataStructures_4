@@ -1,6 +1,19 @@
 package FoodDeliveryApp;
 
 public class BinaryTree<T> {
+    private BinaryNode<T> rootNode;
+    public BinaryTree(BinaryNode<T> root){
+        rootNode = new BinaryNode(root);
+    }
+
+    public BinaryNode<T> getRootNode() {
+        return rootNode;
+    }
+
+    public void setRootNode(BinaryNode<T> rootNode) {
+        this.rootNode = rootNode;
+    }
+
     private class BinaryNode<T>{
 
         private T data;
@@ -33,6 +46,19 @@ public class BinaryTree<T> {
         private void setRightChild(BinaryNode<T> rightChild) {
             this.rightChild = rightChild;
         }
+    }
+    public BinaryNode<T> add(double newEntry){
+        BinaryNode<T> newNode = new BinaryNode(newEntry);
+        if (rootNode == null ){
+            setRootNode(newNode);
+        }
+        else if (compare(newEntry, (double) rootNode.getData())<0){
+
+        }
+    }
+
+    public double compare(double v1 , double v2){
+        return v1 - v2;
     }
 
 

@@ -99,7 +99,7 @@ public class PerformOperations {
             Restaurant element = ratingQueue.dequeue();
             if(element.getRating() < 8.0){
                 ratingTree.remove(element.getRating());
-                System.out.println("Name: "+element.getRating()+"\tRating: "+element.getRating());
+                System.out.println("Name: "+element.getName()+"\tRating: "+element.getRating());
             }
         }
         System.out.println();

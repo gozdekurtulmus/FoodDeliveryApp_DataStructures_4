@@ -5,7 +5,6 @@ public class Restaurant {
     private double rating;
     private String cuisine;
     private int deliveryTime; // in minutes
-    private Food food;
 
 
     public Restaurant(String[] properties) {
@@ -13,7 +12,6 @@ public class Restaurant {
         this.rating = Double.parseDouble(properties[4]);
         this.cuisine = properties[5];
         this.deliveryTime = Integer.parseInt(properties[6]);
-        this.food = new Food(properties);
     }
 
 
@@ -61,11 +59,4 @@ public class Restaurant {
         this.deliveryTime = deliveryTime;
     }
 
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
 }

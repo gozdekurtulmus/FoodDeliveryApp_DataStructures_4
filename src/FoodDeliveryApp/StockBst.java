@@ -20,7 +20,7 @@ public class StockBst {
 
     private void setEverything(){
         int listLength = propertyList.length -1;
-        arrayIterator = new ArrayIterator<>(propertyList, listLength);
+        arrayIterator = new ArrayIterator<>(propertyList, listLength+1);
 
         this.priceTree = new BinaryTree<>();
         this.stockTree = new BinaryTree<>();

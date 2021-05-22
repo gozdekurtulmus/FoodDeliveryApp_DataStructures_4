@@ -13,11 +13,11 @@ public class Food implements Orderable {
         this.restaurant = new Restaurant(properties);
     }
 
-    public void updatePrice(double price){
-        this.price = price;
+    public void updatePrice(double priceRate){
+        this.price = this.price + (this.price * (priceRate/100));
     }
-    public void updateStock(int stock){
-        this.stock = stock;
+    public void updateStock(int stockRate){
+        this.stock /= stockRate;
     }
 
     public String getName() {

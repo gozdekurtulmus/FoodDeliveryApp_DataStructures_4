@@ -45,15 +45,29 @@ public class PerformOperations {
         System.out.println();
     }
 
-    public void operation3(){
+        public void operation3(){
         BinaryTree<Restaurant> temp = deliveryTree;
         ArrayQueue<Restaurant> queue = temp.traverseAscending();
-        while(true){
-           Restaurant element = queue.dequeue();
+        Restaurant element = queue.dequeue();
+        while(element!=null){
            if(element.getName().contains("Pizza")){
                System.out.println("The Pizza restaurant that has the shortest delivery time : "+ element.getName());
                break;
            }
+            element = queue.dequeue();
+        }
+    }
+
+    public void operation4(){
+        BinaryTree<Food> temp = stockTree;
+        ArrayStack<Food> stack = turnIntoDescending(temp.traverseAscending());
+        Food element = stack.pop();
+        while(element != null){
+            if(element.getRestaurant().getCuisine().equals(" Coffee")){
+                System.out.println("Coffee with the highest amount of stock: "+ element.getName());
+                break;
+            }
+            element = stack.pop();
         }
     }
     
@@ -94,27 +108,16 @@ public class PerformOperations {
 
     }
 
-//    public ArrayStack<Restaurant> turnIntoDescending(ArrayQueue<Restaurant> queue){
-//        ArrayStack<Restaurant> stack = new ArrayStack<>();
-//        Restaurant element = queue.dequeue();
-//        while(element != null){
-//            stack.push(element);
-//            element = queue.dequeue();
-//        }
-//        return stack;
-//    }
-    
-    
-       public <T> ArrayStack<T> turnIntoDescending(ArrayQueue<T> queue){
-            ArrayStack<T> stack = new ArrayStack<>();
-            T element = queue.dequeue();
-            while(element != null){
-                 stack.push(element);
-                 element = queue.dequeue();
-            }
-            return (ArrayStack<T>) stack;
-      }
-    
+    public <T> ArrayStack<T> turnIntoDescending(ArrayQueue<T> queue){
+        ArrayStack<T> stack = new ArrayStack<>();
+        T element = queue.dequeue();
+        while(element != null){
+            stack.push(element);
+            element = queue.dequeue();
+        }
+        return (ArrayStack<T>) stack;
+    }
+
 
 }
 

@@ -1,4 +1,4 @@
-	package Iztechea;
+	package FoodDeliveryApp;
 	/* This class creates Stack with array and manages it. */
 
 	public class ArrayStack<T> implements StackInterface<T>{

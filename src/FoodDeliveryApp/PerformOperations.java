@@ -18,6 +18,8 @@ public class PerformOperations {
 
     public void start(){
         operation1();
+        operation2();
+        operation3();
 
     }
 
@@ -32,10 +34,29 @@ public class PerformOperations {
         }
     }
 
-    public void operation2(){
-
-
+       public void operation2(){
+        BinaryTree<Food> temp = priceTree;
+        ArrayQueue<Food> queue = temp.traverseAscending();
+        Food element = queue.dequeue();
+        while(element != null){
+            System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
+            element = queue.dequeue();
+        }
+        System.out.println();
     }
+
+    public void operation3(){
+        BinaryTree<Restaurant> temp = deliveryTree;
+        ArrayQueue<Restaurant> queue = temp.traverseAscending();
+        while(true){
+           Restaurant element = queue.dequeue();
+           if(element.getName().contains("Pizza")){
+               System.out.println("The Pizza restaurant that has the shortest delivery time : "+ element.getName());
+               break;
+           }
+        }
+    }
+    
     public void operation7(){
         QueueInterface stockqueue = stockTree.traverseAscending();
         while (!stockqueue.isEmpty()){

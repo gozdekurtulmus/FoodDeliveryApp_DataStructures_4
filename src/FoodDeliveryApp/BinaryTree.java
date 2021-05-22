@@ -77,14 +77,14 @@ public class BinaryTree<T> implements Comparator<Double>{
         }
         return rootNode;
     }
-    boolean search(double comparison)  {
+    public boolean search(double comparison)  {
         rootNode = searchRecursive(rootNode, comparison);
         if (rootNode!= null)
             return true;
         else
             return false;
     }
-    BinaryNode<T> searchRecursive(BinaryNode<T> root, double comparison)  {
+    private BinaryNode<T> searchRecursive(BinaryNode<T> root, double comparison)  {
         if (rootNode==null || compare(rootNode.comparison,comparison)==0)
             return rootNode;
         if (compare(root.comparison,comparison)>0)
@@ -92,12 +92,12 @@ public class BinaryTree<T> implements Comparator<Double>{
         // val is less than root's key
         return searchRecursive(rootNode.rightChild, comparison);
     }
-    void remove(double comparison) {
+    public void remove(double comparison) {
         rootNode = removeRecursive(rootNode, comparison);
     }
 
     //recursive delete function
-    BinaryNode<T> removeRecursive(BinaryNode<T> rootNode, double comparison) {
+    private BinaryNode<T> removeRecursive(BinaryNode<T> rootNode, double comparison) {
         //tree is empty
         if (rootNode == null) {
             return rootNode;
@@ -116,7 +116,7 @@ public class BinaryTree<T> implements Comparator<Double>{
         }
         return rootNode;
     }
-    double getMinValue(BinaryNode<T> rootNode)  {
+    public double getMinValue(BinaryNode<T> rootNode)  {
         double minroot = rootNode.comparison;
         while (rootNode.leftChild != null)  {
             minroot = rootNode.leftChild.comparison;

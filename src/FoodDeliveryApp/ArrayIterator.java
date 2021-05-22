@@ -25,4 +25,12 @@ public class ArrayIterator<T> implements Iterator{
         return items[current-1];
     }
 
+    public int getCurrent(){
+        return current;
+    }
+
+    public void setCurrent(int value){
+        this.current = value;
+    }
+
 }

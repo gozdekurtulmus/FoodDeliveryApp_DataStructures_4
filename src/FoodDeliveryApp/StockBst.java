@@ -31,6 +31,7 @@ public class StockBst {
         createRestaurantArray();
 
         createFoodTrees();
+        createRestaurantTrees();
 
         this.stockTree = new BinaryTree();
         this.ratingTree = new BinaryTree();

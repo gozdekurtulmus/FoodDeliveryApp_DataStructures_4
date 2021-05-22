@@ -36,6 +36,13 @@ public class PerformOperations {
 
 
     }
+    public void operation7(){
+        QueueInterface stockqueue = stockTree.traverseAscending();
+        while (!stockqueue.isEmpty()){
+            Food food = (Food) stockqueue.dequeue();
+            food.updatePrice(20);
+        }
+    }
 
     public void operation8(){
         QueueInterface stockqueue = stockTree.traverseAscending();

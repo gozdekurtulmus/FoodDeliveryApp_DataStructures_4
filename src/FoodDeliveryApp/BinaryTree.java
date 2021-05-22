@@ -124,6 +124,24 @@ public class BinaryTree<T> implements Comparator<Double>{
         }
         return minroot;
     }
+    
+    public ArrayQueue<T> traverse(){
+        ArrayQueue<T> queue = new ArrayQueue<>();
+        queue = inorderTraversal(rootNode, queue);
+        return queue;
+    }
+
+    public ArrayQueue<T> inorderTraversal(BinaryNode node,ArrayQueue<T> queue) {
+
+            if (node != null) {
+                inorderTraversal(node.leftChild, queue);
+                queue.enqueue((T)node.data);
+                inorderTraversal(node.rightChild,queue);
+            }
+        return queue;
+    }
+    
+    
 
 }
 

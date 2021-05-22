@@ -86,7 +86,8 @@ public class PerformOperations {
         while (!ratingQueue.isEmpty()){
             Food element = ratingQueue.dequeue();
             if(element.getPrice() > 80.0){
-                ratingTree.remove(element.getPrice());
+                priceTree.remove(element.getPrice());
+                stockTree.remove(element.getPrice());
                 System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
             }
         }
@@ -99,6 +100,7 @@ public class PerformOperations {
             Restaurant element = ratingQueue.dequeue();
             if(element.getRating() < 8.0){
                 ratingTree.remove(element.getRating());
+                deliveryTree.remove(element.getRating());
                 System.out.println("Name: "+element.getName()+"\tRating: "+element.getRating());
             }
         }
@@ -134,4 +136,3 @@ public class PerformOperations {
 
 
 }
-

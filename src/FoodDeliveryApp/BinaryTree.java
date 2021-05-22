@@ -59,7 +59,7 @@ public class BinaryTree<T> {
         rootNode = addRecursive(rootNode,data, comparison);
         System.out.println(rootNode);
     }
-    private BinaryNode<T> addRecursive(BinaryNode<T> newEntry,T data, double comparison){
+    private BinaryNode<T> addRecursive(BinaryNode<T> rootNode,T data, double comparison){
         if (rootNode == null ){
             rootNode = new BinaryNode(data,comparison);
             return rootNode;

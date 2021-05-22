@@ -2,9 +2,13 @@ package FoodDeliveryApp;
 
 public class BinaryTree<T> {
     private BinaryNode<T> rootNode;
-    
+
     public BinaryTree(BinaryNode<T> root){
-        rootNode = new BinaryNode(root);
+        setRootNode(root);
+    }
+
+    public BinaryTree() {
+        rootNode =null;
     }
 
     public BinaryNode<T> getRootNode() {
@@ -51,21 +55,73 @@ public class BinaryTree<T> {
             this.rightChild = rightChild;
         }
     }
-    public BinaryNode<T> add(T newEntry, double comparison){
-        BinaryNode<T> newNode = new BinaryNode(newEntry);
+    public void add(T data, double comparison){
+        rootNode = addRecursive(rootNode,data, comparison);
+        System.out.println(rootNode);
+    }
+    private BinaryNode<T> addRecursive(BinaryNode<T> newEntry,T data, double comparison){
         if (rootNode == null ){
-            setRootNode(newNode);
+            rootNode = new BinaryNode(data,comparison);
+            return rootNode;
         }
-        else if (compare(comparison, rootNode.comparison)<0){
-
+        if (compare(comparison, rootNode.comparison)<0){
+            rootNode.leftChild = addRecursive(rootNode.leftChild,data,comparison);
         }
+        else if (compare(comparison, rootNode.comparison)>0){
+            rootNode.rightChild = addRecursive(rootNode.rightChild,data,comparison);
+        }
+        return rootNode;
+    }
+    boolean search(double comparison)  {
+        rootNode = search_Recursive(rootNode, comparison);
+        if (rootNode!= null)
+            return true;
+        else
+            return false;
+    }
+    BinaryNode<T> search_Recursive(BinaryNode<T> root, double comparison)  {
+        if (rootNode==null || compare(rootNode.comparison,comparison)==0)
+            return rootNode;
+        if (compare(root.comparison,comparison)>0)
+            return search_Recursive(rootNode.leftChild, comparison);
+        // val is less than root's key
+        return search_Recursive(rootNode.rightChild, comparison);
+    }
+    void remove(double comparison) {
+        rootNode = delete_Recursive(rootNode, comparison);
     }
 
+    //recursive delete function
+    BinaryNode<T> delete_Recursive(BinaryNode<T> rootNode, double comparison) {
+        //tree is empty
+        if (rootNode == null) {
+            return rootNode;
+        }
+        if (compare(comparison,rootNode.comparison)<0)     //traverse left subtree
+            rootNode.leftChild = delete_Recursive(rootNode.leftChild, comparison);
+        else if (compare(comparison,rootNode.comparison)>0)  //traverse right subtree
+            rootNode.rightChild = delete_Recursive(rootNode.rightChild, comparison);
+        else {
+            if (rootNode.leftChild == null)
+                return rootNode.rightChild;
+            else if (rootNode.rightChild == null)
+                return rootNode.leftChild;
+            rootNode.comparison = minValue(rootNode.rightChild);
+            rootNode.rightChild = delete_Recursive(rootNode.rightChild, rootNode.comparison);
+        }
+        return rootNode;
+    }
+    double minValue(BinaryNode<T> rootNode)  {
+        double minroot = rootNode.comparison;
+        while (rootNode.leftChild != null)  {
+            minroot = rootNode.leftChild.comparison;
+            rootNode = rootNode.leftChild;
+        }
+        return minroot;
+    }
     public double compare(double v1 , double v2){
         return v1 - v2;
     }
 
-
-
-
 }
+

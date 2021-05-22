@@ -1,4 +1,4 @@
-package Iztechea;
+package FoodDeliveryApp;
 /* This class creates Queue with array and manages it. */
 
 public class ArrayQueue<T> implements QueueInterface<T>{

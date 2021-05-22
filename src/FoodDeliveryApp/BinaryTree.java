@@ -1,6 +1,6 @@
 package FoodDeliveryApp;
 
-public class BinaryTree<T> {
+public class BinaryTree<T> implements Comparator<Double>{
     private BinaryNode<T> rootNode;
 
     public BinaryTree(BinaryNode<T> root){
@@ -17,6 +17,11 @@ public class BinaryTree<T> {
 
     public void setRootNode(BinaryNode<T> rootNode) {
         this.rootNode = rootNode;
+    }
+
+    @Override
+    public double compare(Double first, Double second) {
+        return first - second;
     }
 
     private class BinaryNode<T>{
@@ -118,9 +123,6 @@ public class BinaryTree<T> {
             rootNode = rootNode.leftChild;
         }
         return minroot;
-    }
-    public double compare(double v1 , double v2){
-        return v1 - v2;
     }
 
 }

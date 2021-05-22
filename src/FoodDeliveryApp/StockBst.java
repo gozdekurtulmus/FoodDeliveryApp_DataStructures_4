@@ -6,8 +6,8 @@ public class StockBst {
     private BinaryTree<Restaurant> ratingTree ;
     private BinaryTree<Restaurant> deliveryTree;
 
-    public Food[] foodArray ;
-    public Restaurant[] restaurantArray;
+    private Food[] foodArray ;
+    private Restaurant[] restaurantArray;
 
 
     private String[][] propertyList ;

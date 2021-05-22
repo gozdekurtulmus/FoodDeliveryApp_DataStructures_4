@@ -78,45 +78,45 @@ public class BinaryTree<T> implements Comparator<Double>{
         return rootNode;
     }
     boolean search(double comparison)  {
-        rootNode = search_Recursive(rootNode, comparison);
+        rootNode = searchRecursive(rootNode, comparison);
         if (rootNode!= null)
             return true;
         else
             return false;
     }
-    BinaryNode<T> search_Recursive(BinaryNode<T> root, double comparison)  {
+    BinaryNode<T> searchRecursive(BinaryNode<T> root, double comparison)  {
         if (rootNode==null || compare(rootNode.comparison,comparison)==0)
             return rootNode;
         if (compare(root.comparison,comparison)>0)
-            return search_Recursive(rootNode.leftChild, comparison);
+            return searchRecursive(rootNode.leftChild, comparison);
         // val is less than root's key
-        return search_Recursive(rootNode.rightChild, comparison);
+        return searchRecursive(rootNode.rightChild, comparison);
     }
     void remove(double comparison) {
-        rootNode = delete_Recursive(rootNode, comparison);
+        rootNode = removeRecursive(rootNode, comparison);
     }
 
     //recursive delete function
-    BinaryNode<T> delete_Recursive(BinaryNode<T> rootNode, double comparison) {
+    BinaryNode<T> removeRecursive(BinaryNode<T> rootNode, double comparison) {
         //tree is empty
         if (rootNode == null) {
             return rootNode;
         }
         if (compare(comparison,rootNode.comparison)<0)     //traverse left subtree
-            rootNode.leftChild = delete_Recursive(rootNode.leftChild, comparison);
+            rootNode.leftChild = removeRecursive(rootNode.leftChild, comparison);
         else if (compare(comparison,rootNode.comparison)>0)  //traverse right subtree
-            rootNode.rightChild = delete_Recursive(rootNode.rightChild, comparison);
+            rootNode.rightChild = removeRecursive(rootNode.rightChild, comparison);
         else {
             if (rootNode.leftChild == null)
                 return rootNode.rightChild;
             else if (rootNode.rightChild == null)
                 return rootNode.leftChild;
-            rootNode.comparison = minValue(rootNode.rightChild);
-            rootNode.rightChild = delete_Recursive(rootNode.rightChild, rootNode.comparison);
+            rootNode.comparison = getMinValue(rootNode.rightChild);
+            rootNode.rightChild = removeRecursive(rootNode.rightChild, rootNode.comparison);
         }
         return rootNode;
     }
-    double minValue(BinaryNode<T> rootNode)  {
+    double getMinValue(BinaryNode<T> rootNode)  {
         double minroot = rootNode.comparison;
         while (rootNode.leftChild != null)  {
             minroot = rootNode.leftChild.comparison;

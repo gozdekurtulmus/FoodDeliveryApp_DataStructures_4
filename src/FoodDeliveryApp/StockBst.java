@@ -41,35 +41,25 @@ public class StockBst {
     private void createFoodTrees(){
         ArrayIterator<Food> iterator = new ArrayIterator<>(foodArray, foodArray.length);
 
-        for(int i=0; i<2; i++){
             while(iterator.hasNext()){
                 Food element= iterator.next();
-                if(i == 0){
-                    priceTree.add(element, element.getPrice());
-                }
-                else{
-                    stockTree.add(element, element.getStock());
-                }
+                priceTree.add(element, element.getPrice());
+                stockTree.add(element, element.getStock());
+
             }
-            iterator.setCurrent(0);
-        }
     }
+
 
     private void createRestaurantTrees() {
         ArrayIterator<Restaurant> iterator = new ArrayIterator<>(restaurantArray, restaurantArray.length);
 
-        for (int i = 0; i < 2; i++) {
             while (iterator.hasNext()) {
                 Restaurant element = iterator.next();
                 if (element != null) {
-                    if (i == 0) {
-                        ratingTree.add(element, element.getRating());
-                    } else {
-                        deliveryTree.add(element, element.getDeliveryTime());
-                    }
+                    ratingTree.add(element, element.getRating());
+                    deliveryTree.add(element, element.getDeliveryTime());
                 }
             }
-        }
     }
 
     private void createFoodArray(){

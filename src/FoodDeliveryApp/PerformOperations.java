@@ -74,15 +74,27 @@ public class PerformOperations {
 
     }
 
-    public ArrayStack<Restaurant> turnIntoDescending(ArrayQueue<Restaurant> queue){
-        ArrayStack<Restaurant> stack = new ArrayStack<>();
-        Restaurant element = queue.dequeue();
+//    public ArrayStack<Restaurant> turnIntoDescending(ArrayQueue<Restaurant> queue){
+//        ArrayStack<Restaurant> stack = new ArrayStack<>();
+//        Restaurant element = queue.dequeue();
+//        while(element != null){
+//            stack.push(element);
+//            element = queue.dequeue();
+//        }
+//        return stack;
+//    }
+    
+    
+    public <T> T turnIntoDescending(ArrayQueue<T> queue){
+        ArrayStack<T> stack = new ArrayStack<>();
+        T element = queue.dequeue();
         while(element != null){
             stack.push(element);
             element = queue.dequeue();
         }
-        return stack;
+        return (T) stack;
     }
+    
 
 }
 

@@ -85,15 +85,15 @@ public class PerformOperations {
 //    }
     
     
-    public <T> T turnIntoDescending(ArrayQueue<T> queue){
-        ArrayStack<T> stack = new ArrayStack<>();
-        T element = queue.dequeue();
-        while(element != null){
-            stack.push(element);
-            element = queue.dequeue();
-        }
-        return (T) stack;
-    }
+       public <T> ArrayStack<T> turnIntoDescending(ArrayQueue<T> queue){
+            ArrayStack<T> stack = new ArrayStack<>();
+            T element = queue.dequeue();
+            while(element != null){
+                 stack.push(element);
+                 element = queue.dequeue();
+            }
+            return (ArrayStack<T>) stack;
+      }
     
 
 }

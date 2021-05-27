@@ -1,10 +1,10 @@
 package FoodDeliveryApp;
 
 public class StockBst {
-    private BinaryTree<Food> priceTree ;
-    private BinaryTree<Food> stockTree ;
-    private BinaryTree<Restaurant> ratingTree ;
-    private BinaryTree<Restaurant> deliveryTree;
+    private SearchTree<Food> priceTree ;
+    private SearchTree<Food> stockTree ;
+    private SearchTree<Restaurant> ratingTree ;
+    private SearchTree<Restaurant> deliveryTree;
 
     private Food[] foodArray ;
     private Restaurant[] restaurantArray;
@@ -22,10 +22,10 @@ public class StockBst {
         int listLength = propertyList.length -1;
         arrayIterator = new ArrayIterator<>(propertyList, listLength+1);
 
-        this.priceTree = new BinaryTree<>();
-        this.stockTree = new BinaryTree<>();
-        this.ratingTree = new BinaryTree<>();
-        this.deliveryTree= new BinaryTree<>();
+        this.priceTree = new SearchTree<>(new PriceComparator());
+        this.stockTree = new SearchTree<>(new StockComparator());
+        this.ratingTree = new SearchTree<>(new RatingComparator());
+        this.deliveryTree= new SearchTree<>(new DeliveryTimeComparator());
 
         this.foodArray = new Food[listLength];
         this.restaurantArray = new Restaurant[listLength];
@@ -41,25 +41,25 @@ public class StockBst {
     private void createFoodTrees(){
         ArrayIterator<Food> iterator = new ArrayIterator<>(foodArray, foodArray.length);
 
-            while(iterator.hasNext()){
-                Food element= iterator.next();
-                priceTree.add(element, element.getPrice());
-                stockTree.add(element, element.getStock());
+        while(iterator.hasNext()){
+            Food element= iterator.next();
+            priceTree.add(element);
+            stockTree.add(element);
 
-            }
+        }
     }
 
 
     private void createRestaurantTrees() {
         ArrayIterator<Restaurant> iterator = new ArrayIterator<>(restaurantArray, restaurantArray.length);
 
-            while (iterator.hasNext()) {
-                Restaurant element = iterator.next();
-                if (element != null) {
-                    ratingTree.add(element, element.getRating());
-                    deliveryTree.add(element, element.getDeliveryTime());
-                }
+        while (iterator.hasNext()) {
+            Restaurant element = iterator.next();
+            if (element != null) {
+                ratingTree.add(element);
+                deliveryTree.add(element);
             }
+        }
     }
 
     private void createFoodArray(){
@@ -83,40 +83,40 @@ public class StockBst {
                 }
             }
             if(check){
-               this.restaurantArray[arrayIterator.getCurrent()-1] = nextElement;
+                this.restaurantArray[arrayIterator.getCurrent()-1] = nextElement;
             }
         }
     }
 
-    public BinaryTree<Food> getPriceTree() {
+    public SearchTree<Food> getPriceTree() {
         return priceTree;
     }
 
-    public void setPriceTree(BinaryTree<Food> priceTree) {
+    public void setPriceTree(SearchTree<Food> priceTree) {
         this.priceTree = priceTree;
     }
 
-    public BinaryTree<Food> getStockTree() {
+    public SearchTree<Food> getStockTree() {
         return stockTree;
     }
 
-    public void setStockTree(BinaryTree<Food> stockTree) {
+    public void setStockTree(SearchTree<Food> stockTree) {
         this.stockTree = stockTree;
     }
 
-    public BinaryTree<Restaurant> getRatingTree() {
+    public SearchTree<Restaurant> getRatingTree() {
         return ratingTree;
     }
 
-    public void setRatingTree(BinaryTree<Restaurant> ratingTree) {
+    public void setRatingTree(SearchTree<Restaurant> ratingTree) {
         this.ratingTree = ratingTree;
     }
 
-    public BinaryTree<Restaurant> getDeliveryTree() {
+    public SearchTree<Restaurant> getDeliveryTree() {
         return deliveryTree;
     }
 
-    public void setDeliveryTree(BinaryTree<Restaurant> deliveryTree) {
+    public void setDeliveryTree(SearchTree<Restaurant> deliveryTree) {
         this.deliveryTree = deliveryTree;
     }
 

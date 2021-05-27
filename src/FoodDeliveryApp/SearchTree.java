@@ -50,7 +50,7 @@ public class SearchTree<T> {
             rootNode.setData(data);
         }
         else if (comparator.compare(data, rootNode.getData())>0){
-            if(rootNode.hasRightChid())
+            if(rootNode.hasRightChild())
                 result = (T) addRecursive(rootNode.getRightChild(),data);
             else
                 rootNode.setRightChild(new BinaryNode<>(data));
@@ -65,9 +65,9 @@ public class SearchTree<T> {
             return false;
     }
     private BinaryNode<T> searchRecursive(BinaryNode<T> root, T anEntry)  {
-        if (rootNode==null || comparator.compare(rootNode,anEntry)==0)
+        if (rootNode==null || comparator.compare(rootNode.getData(),anEntry)==0)
             return rootNode;
-        if (comparator.compare(rootNode,anEntry)>0)
+        if (comparator.compare(rootNode.getData(),anEntry)>0)
             return searchRecursive(rootNode.getLeftChild(),anEntry);
         // val is less than root's key
         return searchRecursive(rootNode.getRightChild(), anEntry);
@@ -88,14 +88,24 @@ public class SearchTree<T> {
         else if (comparator.compare(anEntry, rootNode.getData()) > 0)  //traverse right subtree
             rootNode.setRightChild(removeRecursive(rootNode.getRightChild(), anEntry));
         else {
-            if (rootNode.getLeftChild() == null)
+
+            if (!rootNode.hasLeftChild())
                 return rootNode.getRightChild();
-            else if (rootNode.getRightChild() == null)
+            else if (!rootNode.hasRightChild())
                 return rootNode.getLeftChild();
 
-            rootNode.setRightChild(removeRecursive(rootNode.getRightChild(),anEntry));
+            rootNode.setData((T) getMaxValue(rootNode.getLeftChild()));
+            rootNode.setLeftChild(removeRecursive(rootNode.getLeftChild(),anEntry));
         }
         return rootNode;
+    }
+    public T getMaxValue(BinaryNode<T> rootNode)  {
+        T maxRoot = rootNode.getData();
+        while (rootNode.hasRightChild())  {
+            maxRoot = (T) rootNode.getRightChild().getData();
+            setRootNode(rootNode.getRightChild());
+        }
+        return maxRoot;
     }
 
     public Iterator<T> getInOrderIterator(){
@@ -104,4 +114,5 @@ public class SearchTree<T> {
     }
 
 }
+
 

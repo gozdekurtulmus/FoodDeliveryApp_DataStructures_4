@@ -19,13 +19,13 @@ public class BinaryNode<T> {
     protected void setData(T data){
         this.data = data;
     }
-    protected BinaryNode getLeftChild(){
+    protected BinaryNode<T> getLeftChild(){
         return this.leftChild;
     }
     protected void setLeftChild(BinaryNode<T> leftChild){
         this.leftChild = leftChild;
     }
-    protected BinaryNode getRightChild(){
+    protected BinaryNode<T> getRightChild(){
         return this.rightChild;
     }
     protected void setRightChild(BinaryNode<T> rightChild) {

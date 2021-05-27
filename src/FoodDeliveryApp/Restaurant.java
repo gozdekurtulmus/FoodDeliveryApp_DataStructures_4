@@ -60,3 +60,17 @@ public class Restaurant {
     }
 
 }
+class RatingComparator implements Comparator<Restaurant>{
+
+    @Override
+    public double compare(Restaurant first, Restaurant second) {
+        return first.getRating() - second.getRating();
+    }
+}
+class DeliveryTimeComparator implements Comparator<Restaurant>{
+
+    @Override
+    public double compare(Restaurant first, Restaurant second) {
+        return first.getDeliveryTime()-second.getDeliveryTime();
+    }
+}

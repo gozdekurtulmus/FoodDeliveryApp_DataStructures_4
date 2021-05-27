@@ -1,16 +1,15 @@
 package FoodDeliveryApp;
 
-import java.util.NoSuchElementException;
 
-public class SearchTree<T> {
+public class SearchTree<T> implements SearchTreeInterface<T> {
     private BinaryNode<T> rootNode;
-    private Comparator comparator;
+    private Comparator<T> comparator;
 
     public SearchTree(BinaryNode<T> root){
         setRootNode(root);
 
     }
-    public SearchTree(Comparator comparator){
+    public SearchTree(Comparator<T> comparator){
         this.comparator = comparator;
     }
 
@@ -41,7 +40,7 @@ public class SearchTree<T> {
         T result = null;
         if (comparator.compare(data, rootNode.getData())<0){
             if (rootNode.hasLeftChild())
-                result = (T) addRecursive(rootNode.getLeftChild(),data);
+                result = addRecursive(rootNode.getLeftChild(),data);
             else
                 rootNode.setLeftChild(new BinaryNode<>(data));
         }
@@ -51,7 +50,7 @@ public class SearchTree<T> {
         }
         else if (comparator.compare(data, rootNode.getData())>0){
             if(rootNode.hasRightChild())
-                result = (T) addRecursive(rootNode.getRightChild(),data);
+                result = addRecursive(rootNode.getRightChild(),data);
             else
                 rootNode.setRightChild(new BinaryNode<>(data));
         }
@@ -59,11 +58,9 @@ public class SearchTree<T> {
     }
     public boolean search(T anEntry)  {
         rootNode = searchRecursive(rootNode,anEntry);
-        if (rootNode!= null)
-            return true;
-        else
-            return false;
+        return rootNode != null;
     }
+
     private BinaryNode<T> searchRecursive(BinaryNode<T> root, T anEntry)  {
         if (rootNode==null || comparator.compare(rootNode.getData(),anEntry)==0)
             return rootNode;
@@ -79,10 +76,7 @@ public class SearchTree<T> {
 
     //recursive delete function
     private BinaryNode<T> removeRecursive(BinaryNode<T> rootNode,T anEntry) {
-        //tree is empty
-        if (rootNode == null) {
-            return rootNode;
-        }
+
         if (comparator.compare(anEntry, rootNode.getData()) < 0)     //traverse left subtree
             rootNode.setLeftChild(removeRecursive(rootNode.getLeftChild(), anEntry));
         else if (comparator.compare(anEntry, rootNode.getData()) > 0)  //traverse right subtree
@@ -94,7 +88,7 @@ public class SearchTree<T> {
             else if (!rootNode.hasRightChild())
                 return rootNode.getLeftChild();
 
-            rootNode.setData((T) getMaxValue(rootNode.getLeftChild()));
+            rootNode.setData(getMaxValue(rootNode.getLeftChild()));
             rootNode.setLeftChild(removeRecursive(rootNode.getLeftChild(),anEntry));
         }
         return rootNode;
@@ -102,17 +96,18 @@ public class SearchTree<T> {
     public T getMaxValue(BinaryNode<T> rootNode)  {
         T maxRoot = rootNode.getData();
         while (rootNode.hasRightChild())  {
-            maxRoot = (T) rootNode.getRightChild().getData();
+            maxRoot = rootNode.getRightChild().getData();
             setRootNode(rootNode.getRightChild());
         }
         return maxRoot;
     }
 
     public Iterator<T> getInOrderIterator(){
-        return new InorderIterator(rootNode);
+        return new InorderIterator<>(rootNode);
 
     }
 
 }
+
 
 

@@ -77,7 +77,11 @@ public class SearchTree<T> implements SearchTreeInterface<T> {
 
     //recursive delete function
     private BinaryNode<T> removeRecursive(BinaryNode<T> rootNode,T anEntry) {
-
+        
+        //tree is empty
+        if (rootNode == null) {
+            return rootNode;
+        }
         if (comparator.compare(anEntry, rootNode.getData()) < 0)     //traverse left subtree
             rootNode.setLeftChild(removeRecursive(rootNode.getLeftChild(), anEntry));
         else if (comparator.compare(anEntry, rootNode.getData()) > 0)  //traverse right subtree

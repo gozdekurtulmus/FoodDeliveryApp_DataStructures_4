@@ -5,18 +5,19 @@ public class Food implements Orderable {
     private double price;
     private int stock;
     private Restaurant restaurant;
-    
-     public Food(String[] properties){
+
+    public Food(String[] properties) {
         this.name = properties[0];
         this.price = Double.parseDouble(properties[1]);
         this.stock = Integer.parseInt(properties[2]);
         this.restaurant = new Restaurant(properties);
     }
 
-    public void updatePrice(double priceRate){
-        this.price = this.price + (this.price * (priceRate/100));
+    public void updatePrice(double priceRate) {
+        this.price = this.price + (this.price * (priceRate / 100));
     }
-    public void updateStock(int stockRate){
+
+    public void updateStock(int stockRate) {
         this.stock /= stockRate;
     }
 
@@ -52,3 +53,18 @@ public class Food implements Orderable {
         this.restaurant = restaurant;
     }
 }
+
+    class PriceComparator implements Comparator<Food>{
+
+        @Override
+        public double compare(Food first, Food second) {
+            return first.getPrice()-second.getPrice();
+        }
+    }
+    class StockComparator implements Comparator<Food>{
+
+        @Override
+        public double compare(Food first, Food second) {
+            return first.getStock() - second.getStock();
+        }
+    }

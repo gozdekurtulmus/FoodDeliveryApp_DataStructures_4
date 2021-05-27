@@ -1,15 +1,14 @@
 package FoodDeliveryApp;
 
 public class PerformOperations {
-    private StockBst stock ;
-    private FileIO fileIO = new FileIO();
     private SearchTreeInterface<Restaurant> ratingTree;
     private SearchTreeInterface<Restaurant> deliveryTree;
     private SearchTreeInterface<Food> priceTree;
     private SearchTreeInterface<Food> stockTree;
 
     public PerformOperations(){
-        this.stock = new StockBst(fileIO.readToArray("CENG112_HW4.csv"));
+        FileIO fileIO = new FileIO();
+        StockBst stock = new StockBst(fileIO.readToArray("CENG112_HW4.csv"));
         this.ratingTree = stock.getRatingTree();
         this.deliveryTree = stock.getDeliveryTree();
         this.priceTree = stock.getPriceTree();
@@ -143,7 +142,7 @@ public class PerformOperations {
     }
 
     public <T> StackInterface<T> turnIntoDescending(Iterator<T> iterator){
-        QueueInterface<T> queue = new ArrayQueue();
+        QueueInterface<T> queue = new ArrayQueue<>();
         while(iterator.hasNext()){
             queue.enqueue(iterator.next());
         }

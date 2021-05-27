@@ -37,7 +37,7 @@ public class BinaryNode<T> {
     protected boolean hasLeftChild(){
         return leftChild != null;
     }
-    protected boolean hasRightChid(){
+    protected boolean hasRightChild(){
         return rightChild !=null;
     }
 }

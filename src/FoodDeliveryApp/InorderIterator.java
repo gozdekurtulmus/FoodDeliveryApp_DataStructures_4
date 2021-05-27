@@ -18,7 +18,7 @@ public class InorderIterator<T> implements Iterator<T>{
 
     @Override
     public T next() {
-        BinaryNode<T> nextNode = null;
+        BinaryNode<T> nextNode;
         while (currentNode != null){
             stack.push(currentNode);
             currentNode = currentNode.getLeftChild();

@@ -1,7 +1,7 @@
 package FoodDeliveryApp;
 
 public interface Orderable {
-    public void updatePrice(double price);
-    public void updateStock(int stock);
+    void updatePrice(double price);
+    void updateStock(int stock);
 
 }

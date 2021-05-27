@@ -6,8 +6,8 @@ public class StockBst {
     private SearchTreeInterface<Restaurant> ratingTree ;
     private SearchTreeInterface<Restaurant> deliveryTree;
 
-    private Food[] foodArray ;
-    private Restaurant[] restaurantArray;
+    private QueueInterface<Food> foodArray ;
+    private QueueInterface<Restaurant> restaurantArray;
 
     private String[][] propertyList ;
     private ArrayIterator<String[]> arrayIterator ;
@@ -27,8 +27,8 @@ public class StockBst {
         this.ratingTree = new SearchTree<>(new RatingComparator());
         this.deliveryTree= new SearchTree<>(new DeliveryTimeComparator());
 
-        this.foodArray = new Food[listLength];
-        this.restaurantArray = new Restaurant[listLength];
+        this.foodArray = new ArrayQueue<>();
+        this.restaurantArray = new ArrayQueue<>();
 
         createFoodArray();
         arrayIterator.setCurrent(0);
@@ -39,52 +39,33 @@ public class StockBst {
     }
 
     private void createFoodTrees(){
-        ArrayIterator<Food> iterator = new ArrayIterator<>(foodArray, foodArray.length);
-
-        while(iterator.hasNext()){
-            Food element= iterator.next();
+        while(!foodArray.isEmpty()){
+            Food element= foodArray.dequeue();
             priceTree.add(element);
             stockTree.add(element);
-
         }
     }
 
 
     private void createRestaurantTrees() {
-        ArrayIterator<Restaurant> iterator = new ArrayIterator<>(restaurantArray, restaurantArray.length);
-
-        while (iterator.hasNext()) {
-            Restaurant element = iterator.next();
-            if (element != null) {
-                ratingTree.add(element);
-                deliveryTree.add(element);
-            }
+        while (!restaurantArray.isEmpty()) {
+            Restaurant element = restaurantArray.dequeue();
+            ratingTree.add(element);
+            deliveryTree.add(element);
         }
     }
 
     private void createFoodArray(){
         arrayIterator.next();
         while (arrayIterator.hasNext()){
-            this.foodArray[arrayIterator.getCurrent()-1] = new Food(arrayIterator.next());
+            this.foodArray.enqueue(new Food(arrayIterator.next()));
         }
     }
 
     private void createRestaurantArray(){
         arrayIterator.next();
         while (arrayIterator.hasNext()){
-            Restaurant nextElement = new Restaurant(arrayIterator.next());
-            boolean check = true;
-            for (Restaurant element: restaurantArray) {
-                if (element != null) {
-                    if (element.getName().equals(nextElement.getName())) {
-                        check = false;
-                        break;
-                    }
-                }
-            }
-            if(check){
-                this.restaurantArray[arrayIterator.getCurrent()-1] = nextElement;
-            }
+            this.restaurantArray.enqueue(new Restaurant(arrayIterator.next()));
         }
     }
 

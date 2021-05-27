@@ -1,10 +1,10 @@
 package FoodDeliveryApp;
 
 public class StockBst {
-    private SearchTree<Food> priceTree ;
-    private SearchTree<Food> stockTree ;
-    private SearchTree<Restaurant> ratingTree ;
-    private SearchTree<Restaurant> deliveryTree;
+    private SearchTreeInterface<Food> priceTree ;
+    private SearchTreeInterface<Food> stockTree ;
+    private SearchTreeInterface<Restaurant> ratingTree ;
+    private SearchTreeInterface<Restaurant> deliveryTree;
 
     private Food[] foodArray ;
     private Restaurant[] restaurantArray;
@@ -88,7 +88,7 @@ public class StockBst {
         }
     }
 
-    public SearchTree<Food> getPriceTree() {
+    public SearchTreeInterface<Food> getPriceTree() {
         return priceTree;
     }
 
@@ -96,7 +96,7 @@ public class StockBst {
         this.priceTree = priceTree;
     }
 
-    public SearchTree<Food> getStockTree() {
+    public SearchTreeInterface<Food> getStockTree() {
         return stockTree;
     }
 
@@ -104,7 +104,7 @@ public class StockBst {
         this.stockTree = stockTree;
     }
 
-    public SearchTree<Restaurant> getRatingTree() {
+    public SearchTreeInterface<Restaurant> getRatingTree() {
         return ratingTree;
     }
 
@@ -112,7 +112,7 @@ public class StockBst {
         this.ratingTree = ratingTree;
     }
 
-    public SearchTree<Restaurant> getDeliveryTree() {
+    public SearchTreeInterface<Restaurant> getDeliveryTree() {
         return deliveryTree;
     }
 

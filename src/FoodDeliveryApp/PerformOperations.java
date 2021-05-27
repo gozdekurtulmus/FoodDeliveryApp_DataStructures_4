@@ -110,6 +110,7 @@ public class PerformOperations {
         while(iterator.hasNext()){
             element = iterator.next();
             if(element.getRating() < 8.0){
+                System.out.println(element.getName());
                 ratingTree.remove(element);
                 deliveryTree.remove(element);
                 System.out.format("%-25s%-5.1f%-10s\n",  element.getName(), element.getRating(), "Removed");
@@ -154,6 +155,5 @@ public class PerformOperations {
         }
         return stack;
     }
-
 
 }

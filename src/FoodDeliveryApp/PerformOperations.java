@@ -32,10 +32,10 @@ public class PerformOperations {
 
     public void operation1(){
         SearchTree<Restaurant> temp = ratingTree;
-        Iterator<Restaurant> iterator = temp.getInOrderIterator();
+        ArrayStack<Restaurant> stack = turnIntoDescending(temp.getInOrderIterator());
         Restaurant element;
-        while(iterator.hasNext()){
-            element = iterator.next();
+        while(!stack.isEmpty()){
+            element = stack.pop();
             System.out.println("Name:" + element.getName() + "\tRating:" + element.getRating());
         }
         System.out.println();
@@ -131,14 +131,18 @@ public class PerformOperations {
 
     }
 
-    public <T> ArrayStack<T> turnIntoDescending(ArrayQueue<T> queue){
+    public <T> ArrayStack<T> turnIntoDescending(Iterator<T> iterator){
+        QueueInterface<T> queue = new ArrayQueue();
+        while(iterator.hasNext()){
+            queue.enqueue(iterator.next());
+        }
         ArrayStack<T> stack = new ArrayStack<>();
         T element = queue.dequeue();
         while(element != null){
             stack.push(element);
             element = queue.dequeue();
         }
-        return (ArrayStack<T>) stack;
+        return stack;
     }
 
 

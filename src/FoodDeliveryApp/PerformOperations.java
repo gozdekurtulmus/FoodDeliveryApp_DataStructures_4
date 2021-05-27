@@ -3,10 +3,10 @@ package FoodDeliveryApp;
 public class PerformOperations {
     private StockBst stock ;
     private FileIO fileIO = new FileIO();
-    private BinaryTree<Restaurant> ratingTree;
-    private BinaryTree<Restaurant> deliveryTree;
-    private BinaryTree<Food> priceTree;
-    private BinaryTree<Food> stockTree;
+    private SearchTree<Restaurant> ratingTree;
+    private SearchTree<Restaurant> deliveryTree;
+    private SearchTree<Food> priceTree;
+    private SearchTree<Food> stockTree;
 
     public PerformOperations(){
         this.stock = new StockBst(fileIO.readToArray("CENG112_HW4.csv"));
@@ -31,63 +31,64 @@ public class PerformOperations {
     }
 
     public void operation1(){
-        BinaryTree<Restaurant> temp = ratingTree;
-        ArrayStack<Restaurant> stack = turnIntoDescending(temp.traverseAscending());
-
-        Restaurant element = stack.pop();
-        while(element != null){
+        SearchTree<Restaurant> temp = ratingTree;
+        Iterator<Restaurant> iterator = temp.getInOrderIterator();
+        Restaurant element;
+        while(iterator.hasNext()){
+            element = iterator.next();
             System.out.println("Name:" + element.getName() + "\tRating:" + element.getRating());
-            element = stack.pop();
         }
         System.out.println();
     }
 
     public void operation2(){
-        BinaryTree<Food> temp = priceTree;
-        ArrayQueue<Food> queue = temp.traverseAscending();
-        Food element = queue.dequeue();
-        while(element != null){
+        SearchTree<Food> temp = priceTree;
+        Iterator<Food> iterator = temp.getInOrderIterator();
+        Food element;
+        while(iterator.hasNext()){
+            element = iterator.next();
             System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
-            element = queue.dequeue();
         }
         System.out.println();
     }
 
     public void operation3(){
-        BinaryTree<Restaurant> temp = deliveryTree;
-        ArrayQueue<Restaurant> queue = temp.traverseAscending();
-        Restaurant element = queue.dequeue();
-        while(element!=null){
+        SearchTree<Restaurant> temp = deliveryTree;
+        Iterator<Restaurant> iterator = temp.getInOrderIterator();
+        Restaurant element;
+        while(iterator.hasNext()){
+            element = iterator.next();
             if(element.getName().contains("Pizza")){
                 System.out.println("The Pizza restaurant that has the shortest delivery time : "+ element.getName());
                 break;
             }
-            element = queue.dequeue();
         }
         System.out.println();
     }
 
     public void operation4(){
-        BinaryTree<Food> temp = stockTree;
-        ArrayStack<Food> stack = turnIntoDescending(temp.traverseAscending());
-        Food element = stack.pop();
-        while(element != null){
+        SearchTree<Food> temp = stockTree;
+        Iterator<Food> iterator = temp.getInOrderIterator();
+        Food element;
+        while(iterator.hasNext()){
+            element = iterator.next();
             if(element.getRestaurant().getCuisine().equals(" Coffee")){
                 System.out.println("Coffee with the highest amount of stock: "+ element.getName());
                 break;
             }
-            element = stack.pop();
         }
         System.out.println();
     }
 
     public void operation5(){
-        QueueInterface<Food> ratingQueue = priceTree.traverseAscending();
-        while (!ratingQueue.isEmpty()){
-            Food element = ratingQueue.dequeue();
+        SearchTree<Food> temp = stockTree;
+        Iterator<Food> iterator = temp.getInOrderIterator();
+        Food element;
+        while(iterator.hasNext()){
+            element = iterator.next();
             if(element.getPrice() > 80.0){
-                priceTree.remove(element.getPrice());
-                stockTree.remove(element.getPrice());
+                priceTree.remove(element);
+                stockTree.remove(element);
                 System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
             }
         }
@@ -95,12 +96,14 @@ public class PerformOperations {
 
     }
     public void operation6(){
-        QueueInterface<Restaurant> ratingQueue = ratingTree.traverseAscending();
-        while (!ratingQueue.isEmpty()){
-            Restaurant element = ratingQueue.dequeue();
+        SearchTree<Restaurant> temp = ratingTree;
+        Iterator<Restaurant> iterator = temp.getInOrderIterator();
+        Restaurant element;
+        while(iterator.hasNext()){
+            element = iterator.next();
             if(element.getRating() < 8.0){
-                ratingTree.remove(element.getRating());
-                deliveryTree.remove(element.getRating());
+                ratingTree.remove(element);
+                deliveryTree.remove(element);
                 System.out.println("Name: "+element.getName()+"\tRating: "+element.getRating());
             }
         }
@@ -108,18 +111,22 @@ public class PerformOperations {
 
     }
     public void operation7(){
-        QueueInterface<Food> stockqueue = stockTree.traverseAscending();
-        while (!stockqueue.isEmpty()){
-            Food food = stockqueue.dequeue();
-            food.updatePrice(20);
+        SearchTree<Food> temp = stockTree;
+        Iterator<Food> iterator = temp.getInOrderIterator();
+        Food element;
+        while(iterator.hasNext()){
+            element = iterator.next();
+            element.updatePrice(20);
         }
     }
 
     public void operation8(){
-        QueueInterface<Food> stockqueue = stockTree.traverseAscending();
-        while (!stockqueue.isEmpty()){
-            Food food = stockqueue.dequeue();
-            food.updateStock(2);
+        SearchTree<Food> temp = stockTree;
+        Iterator<Food> iterator = temp.getInOrderIterator();
+        Food element;
+        while(iterator.hasNext()){
+            element = iterator.next();
+            element.updateStock(2);
         }
 
     }

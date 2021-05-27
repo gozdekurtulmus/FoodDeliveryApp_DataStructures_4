@@ -57,5 +57,9 @@ public class ArrayQueue<T> implements QueueInterface<T>{
             return frontProduct;
         }
     }
+    
+    public int length(){
+        return this.size;
+    }
 
 }

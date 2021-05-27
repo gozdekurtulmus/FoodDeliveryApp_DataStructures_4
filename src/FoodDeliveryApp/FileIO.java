@@ -7,9 +7,9 @@ import java.io.IOException;
 public class FileIO {
 
 	public FileIO() {
-		
 	}	
 	
+	// Returns a string array from the given csv file.
 	public String[][] readToArray(String fileName) {
 		String[][] returnArray = null;
 		try {
@@ -31,6 +31,7 @@ public class FileIO {
 		return returnArray;		
 	}
 
+	//Finds the size of the given file.
 	private int findSize(String fileName) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 		String line = reader.readLine();

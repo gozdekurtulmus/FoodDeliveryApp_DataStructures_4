@@ -23,7 +23,7 @@ public interface SearchTreeInterface<T> {
      * @return Either the object that was removed from the tree or
      *          null if no such object exists.
      */
-    void remove(T anEntry);
+    BinaryNode<T> remove(T anEntry);
 
 
     /** Creates an iterator that traverses all entries in this tree.

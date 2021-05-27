@@ -17,15 +17,25 @@ public class PerformOperations {
     }
 
     public void start(){
+        System.out.println("----------------- 1 -----------------");
         operation1();
+        System.out.println("----------------- 2 -----------------");
         operation2();
+        System.out.println("----------------- 3 -----------------");
         operation3();
+        System.out.println("----------------- 4 -----------------");
         operation4();
+        System.out.println("----------------- 5 -----------------");
         operation5();
+        System.out.println("----------------- 6 -----------------");
         operation6();
+        System.out.println("----------------- 7 -----------------");
         operation7();
+        System.out.println("----------------- 8 -----------------");
         operation8();
+        System.out.println("----------------- 9 -----------------");
         operation1();
+        System.out.println("----------------- 10 -----------------");
         operation2();
 
     }
@@ -36,7 +46,7 @@ public class PerformOperations {
         Restaurant element;
         while(!stack.isEmpty()){
             element = stack.pop();
-            System.out.println("Name:" + element.getName() + "\tRating:" + element.getRating());
+            System.out.format("%-30s %5.1f\n",  element.getName(), element.getRating());
         }
         System.out.println();
     }
@@ -47,7 +57,7 @@ public class PerformOperations {
         Food element;
         while(iterator.hasNext()){
             element = iterator.next();
-            System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
+            System.out.format("%-22s %-10.2f %-5d\n",  element.getName(), element.getPrice(), element.getStock());
         }
         System.out.println();
     }
@@ -59,21 +69,20 @@ public class PerformOperations {
         while(iterator.hasNext()){
             element = iterator.next();
             if(element.getName().contains("Pizza")){
-                System.out.println("The Pizza restaurant that has the shortest delivery time : "+ element.getName());
+                System.out.format("%-25s %-5d\n",  element.getName(), element.getDeliveryTime());
                 break;
             }
         }
         System.out.println();
     }
-
     public void operation4(){
         SearchTree<Food> temp = stockTree;
-        Iterator<Food> iterator = temp.getInOrderIterator();
+        ArrayStack<Food> stack = turnIntoDescending(temp.getInOrderIterator());
         Food element;
-        while(iterator.hasNext()){
-            element = iterator.next();
-            if(element.getRestaurant().getCuisine().equals(" Coffee")){
-                System.out.println("Coffee with the highest amount of stock: "+ element.getName());
+        while(!stack.isEmpty()){
+            element = stack.pop();
+            if(element.getRestaurant().getCuisine().contains("Coffee")){
+                System.out.format("%-25s %-5d\n",  element.getName(), element.getStock());
                 break;
             }
         }
@@ -89,7 +98,7 @@ public class PerformOperations {
             if(element.getPrice() > 80.0){
                 priceTree.remove(element);
                 stockTree.remove(element);
-                System.out.println("Name:" + element.getName()+ "\tPrice:" + element.getPrice()+"\tStocks:"+element.getStock());
+                System.out.format("%-20s%-10.2f%-10s\n",  element.getName(), element.getPrice(), "Removed");
             }
         }
         System.out.println();
@@ -104,7 +113,7 @@ public class PerformOperations {
             if(element.getRating() < 8.0){
                 ratingTree.remove(element);
                 deliveryTree.remove(element);
-                System.out.println("Name: "+element.getName()+"\tRating: "+element.getRating());
+                System.out.format("%-25s%-5.1f%-10s\n",  element.getName(), element.getRating(), "Removed");
             }
         }
         System.out.println();
@@ -118,6 +127,7 @@ public class PerformOperations {
             element = iterator.next();
             element.updatePrice(20);
         }
+        System.out.println("Prices in FoodBSTs are updated.");
     }
 
     public void operation8(){
@@ -128,6 +138,7 @@ public class PerformOperations {
             element = iterator.next();
             element.updateStock(2);
         }
+        System.out.println("Stocks in FoodBSTs are updated.");
 
     }
 

@@ -58,8 +58,5 @@ public class ArrayQueue<T> implements QueueInterface<T>{
         }
     }
     
-    public int length(){
-        return this.size;
-    }
 
 }

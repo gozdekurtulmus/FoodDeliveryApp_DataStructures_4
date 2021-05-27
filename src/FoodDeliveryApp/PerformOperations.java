@@ -3,10 +3,10 @@ package FoodDeliveryApp;
 public class PerformOperations {
     private StockBst stock ;
     private FileIO fileIO = new FileIO();
-    private SearchTree<Restaurant> ratingTree;
-    private SearchTree<Restaurant> deliveryTree;
-    private SearchTree<Food> priceTree;
-    private SearchTree<Food> stockTree;
+    private SearchTreeInterface<Restaurant> ratingTree;
+    private SearchTreeInterface<Restaurant> deliveryTree;
+    private SearchTreeInterface<Food> priceTree;
+    private SearchTreeInterface<Food> stockTree;
 
     public PerformOperations(){
         this.stock = new StockBst(fileIO.readToArray("CENG112_HW4.csv"));
@@ -41,8 +41,8 @@ public class PerformOperations {
     }
 
     public void operation1(){
-        SearchTree<Restaurant> temp = ratingTree;
-        ArrayStack<Restaurant> stack = turnIntoDescending(temp.getInOrderIterator());
+        SearchTreeInterface<Restaurant> temp = ratingTree;
+        StackInterface<Restaurant> stack = turnIntoDescending(temp.getInOrderIterator());
         Restaurant element;
         while(!stack.isEmpty()){
             element = stack.pop();
@@ -52,7 +52,7 @@ public class PerformOperations {
     }
 
     public void operation2(){
-        SearchTree<Food> temp = priceTree;
+        SearchTreeInterface<Food> temp = priceTree;
         Iterator<Food> iterator = temp.getInOrderIterator();
         Food element;
         while(iterator.hasNext()){
@@ -63,7 +63,7 @@ public class PerformOperations {
     }
 
     public void operation3(){
-        SearchTree<Restaurant> temp = deliveryTree;
+        SearchTreeInterface<Restaurant> temp = deliveryTree;
         Iterator<Restaurant> iterator = temp.getInOrderIterator();
         Restaurant element;
         while(iterator.hasNext()){
@@ -76,8 +76,8 @@ public class PerformOperations {
         System.out.println();
     }
     public void operation4(){
-        SearchTree<Food> temp = stockTree;
-        ArrayStack<Food> stack = turnIntoDescending(temp.getInOrderIterator());
+        SearchTreeInterface<Food> temp = stockTree;
+        StackInterface<Food> stack = turnIntoDescending(temp.getInOrderIterator());
         Food element;
         while(!stack.isEmpty()){
             element = stack.pop();
@@ -90,7 +90,7 @@ public class PerformOperations {
     }
 
     public void operation5(){
-        SearchTree<Food> temp = stockTree;
+        SearchTreeInterface<Food> temp = stockTree;
         Iterator<Food> iterator = temp.getInOrderIterator();
         Food element;
         while(iterator.hasNext()){
@@ -105,7 +105,7 @@ public class PerformOperations {
 
     }
     public void operation6(){
-        SearchTree<Restaurant> temp = ratingTree;
+        SearchTreeInterface<Restaurant> temp = ratingTree;
         Iterator<Restaurant> iterator = temp.getInOrderIterator();
         Restaurant element;
         while(iterator.hasNext()){
@@ -120,7 +120,7 @@ public class PerformOperations {
 
     }
     public void operation7(){
-        SearchTree<Food> temp = stockTree;
+        SearchTreeInterface<Food> temp = stockTree;
         Iterator<Food> iterator = temp.getInOrderIterator();
         Food element;
         while(iterator.hasNext()){
@@ -131,7 +131,7 @@ public class PerformOperations {
     }
 
     public void operation8(){
-        SearchTree<Food> temp = stockTree;
+        SearchTreeInterface<Food> temp = stockTree;
         Iterator<Food> iterator = temp.getInOrderIterator();
         Food element;
         while(iterator.hasNext()){
@@ -142,12 +142,12 @@ public class PerformOperations {
 
     }
 
-    public <T> ArrayStack<T> turnIntoDescending(Iterator<T> iterator){
+    public <T> StackInterface<T> turnIntoDescending(Iterator<T> iterator){
         QueueInterface<T> queue = new ArrayQueue();
         while(iterator.hasNext()){
             queue.enqueue(iterator.next());
         }
-        ArrayStack<T> stack = new ArrayStack<>();
+        StackInterface<T> stack = new ArrayStack<>();
         T element = queue.dequeue();
         while(element != null){
             stack.push(element);

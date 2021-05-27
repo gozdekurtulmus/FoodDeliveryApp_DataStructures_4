@@ -70,8 +70,9 @@ public class SearchTree<T> implements SearchTreeInterface<T> {
         return searchRecursive(rootNode.getRightChild(), anEntry);
     }
 
-    public void remove(T anEntry) {
+    public BinaryNode<T> remove(T anEntry) {
         rootNode = removeRecursive(rootNode,anEntry);
+        return rootNode;
     }
 
     //recursive delete function

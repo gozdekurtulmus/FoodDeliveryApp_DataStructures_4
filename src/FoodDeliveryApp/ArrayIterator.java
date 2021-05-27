@@ -2,7 +2,7 @@ package FoodDeliveryApp;
 
 import java.util.NoSuchElementException;
 
-public class ArrayIterator<T> implements Iterator{
+public class ArrayIterator<T> implements Iterator<T>{
     private int count;
     private int current;
     private T[] items;

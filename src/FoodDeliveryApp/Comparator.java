@@ -1,5 +1,5 @@
 package FoodDeliveryApp;
 
 public interface Comparator<T> {
-    public int compare(T first, T second);
+    public double compare(T first, T second);
 }

@@ -111,6 +111,26 @@ public class SearchTree<T> implements SearchTreeInterface<T> {
         return new InorderIterator<>(rootNode);
 
     }
+        public void getPreorderTraversal(){
+        preOrderTraverse(rootNode);
+    }
+    private void preOrderTraverse(BinaryNode<T> rootNode){
+        if (rootNode != null){
+            System.out.println(rootNode.getData());
+            preOrderTraverse(rootNode.getLeftChild());
+            preOrderTraverse(rootNode.getRightChild());
+        }
+    }
+    public void getPostOrderTraversal(){
+        postOrderTraverse(rootNode);
+    }
+    private void postOrderTraverse(BinaryNode<T> rootNode){
+        if (rootNode != null){
+            postOrderTraverse(rootNode.getLeftChild());
+            postOrderTraverse(rootNode.getRightChild());
+            System.out.println(rootNode.getData());
+        }
+    }
 
 }
 

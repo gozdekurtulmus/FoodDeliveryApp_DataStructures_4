@@ -1,11 +1,12 @@
 package FoodDeliveryApp;
 
 public class Food implements Orderable {
-    private String name;
-    private double price;
-    private int stock;
-    private Restaurant restaurant;
+    private String name; // keeps the name of the food
+    private double price;  // keeps the price of the food
+    private int stock;  // keeps the stock of the food
+    private Restaurant restaurant;  // keeps the restaurant of the food
 
+    //constructor
     public Food(String[] properties) {
         this.name = properties[0];
         this.price = Double.parseDouble(properties[1]);
@@ -13,14 +14,15 @@ public class Food implements Orderable {
         this.restaurant = new Restaurant(properties);
     }
 
+     //Updates the price of the foods
     public void updatePrice(double priceRate) {
         this.price = this.price + (this.price * (priceRate / 100));
     }
-
+    //Updates the stock of the foods
     public void updateStock(int stockRate) {
         this.stock /= stockRate;
     }
-
+    //starts the getter and setters methods
     public String getName() {
         return name;
     }
@@ -52,19 +54,30 @@ public class Food implements Orderable {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+    //ends the getters and the setters methods
 }
 
-    class PriceComparator implements Comparator<Food>{
+/**
+ * Places nodes in BST according to the prices of the foods
+ */
+class PriceComparator implements Comparator<Food>{
 
         @Override
+        //@return positive if first is bigger, 0 if equal and negative otherwise.
         public double compare(Food first, Food second) {
             return first.getPrice()-second.getPrice();
         }
     }
+
+/**
+ * Places nodes in BST according to the stocks of the foods
+ */
     class StockComparator implements Comparator<Food>{
 
         @Override
+        //@return positive if first is bigger, 0 if equal and negative otherwise.
         public double compare(Food first, Food second) {
             return first.getStock() - second.getStock();
         }
     }
+

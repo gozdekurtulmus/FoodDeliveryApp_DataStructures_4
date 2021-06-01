@@ -1,4 +1,4 @@
-
+package FoodDeliveryApp;
 /**
  *  This class creates and stores all Binary Search Trees and Food & Restaurant queues.
  */
@@ -112,4 +112,5 @@ public class StockBst {
     public void setDeliveryTree(SearchTree<Restaurant> deliveryTree) {
         this.deliveryTree = deliveryTree;
     }
+}
 

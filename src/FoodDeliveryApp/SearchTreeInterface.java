@@ -31,5 +31,26 @@ public interface SearchTreeInterface<T> {
      *          to the entries in the tree.
      */
     Iterator<T> getInOrderIterator();
+    
+    /**
+     * Traverses the search tree with post-order traversal.
+     * @return Queue which has the traversal.
+     */
+    QueueInterface<T> getPostOrderTraversal();
+    
+    /**
+     * Traverses the search tree with pre-order traversal.
+     * @return Queue which has the traversal.
+     */
+    QueueInterface<T> getPreorderTraversal();
+    
+    
+    /**
+     * Traverses the search tree with level-order traversal.
+     * @return Queue which has the traversal.
+     */
+    QueueInterface<T> levelOrderTraversal();
+    
+
 
 }

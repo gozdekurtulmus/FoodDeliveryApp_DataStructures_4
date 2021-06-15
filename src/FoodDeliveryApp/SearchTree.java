@@ -77,7 +77,7 @@ public class SearchTree<T> implements SearchTreeInterface<T> {
         return rootNode != null;
     }
     //recursive search method
-    private BinaryNode<T> searchRecursive(BinaryNode<T> root, T anEntry)  {
+    private BinaryNode<T> searchRecursive(BinaryNode<T> rootNode, T anEntry)  {
         if (rootNode==null || comparator.compare(rootNode.getData(),anEntry)==0)
             return rootNode;
         if (comparator.compare(rootNode.getData(),anEntry)>0)  //traverse left subtree
@@ -96,7 +96,7 @@ public class SearchTree<T> implements SearchTreeInterface<T> {
         
         //tree is empty
         if (rootNode == null) {
-            return rootNode;
+            return null;
         }
         if (comparator.compare(anEntry, rootNode.getData()) < 0)     //traverse left subtree
             rootNode.setLeftChild(removeRecursive(rootNode.getLeftChild(), anEntry));
@@ -131,32 +131,57 @@ public class SearchTree<T> implements SearchTreeInterface<T> {
 
     }
     //Traverses the BST with preorder traversal
-    public void getPreorderTraversal(){
-        preOrderTraverse(rootNode);
+    public QueueInterface<T> getPreorderTraversal(){
+    	QueueInterface<T> queue = new ArrayQueue<>();
+        return preOrderTraverse(rootNode,queue);
     }
 
     //recursive preOrderTraverse
-    private void preOrderTraverse(BinaryNode<T> rootNode){
+    private QueueInterface<T> preOrderTraverse(BinaryNode<T> rootNode, QueueInterface<T> queue){
         if (rootNode != null){
-            System.out.println(rootNode.getData());
-            preOrderTraverse(rootNode.getLeftChild());
-            preOrderTraverse(rootNode.getRightChild());
+            queue.enqueue(rootNode.getData());
+            preOrderTraverse(rootNode.getLeftChild(),queue);
+            preOrderTraverse(rootNode.getRightChild(),queue);
         }
+        return queue;
     }
     //Traverses the BST with postorder traversal
-    public void getPostOrderTraversal(){
-        postOrderTraverse(rootNode);
+    public 	QueueInterface<T> getPostOrderTraversal(){
+    	QueueInterface<T> queue = new ArrayQueue<>();
+        return postOrderTraverse(rootNode, queue);
     }
 
     //recursive postOrderTraverse
-    private void postOrderTraverse(BinaryNode<T> rootNode){
+    private QueueInterface<T> postOrderTraverse(BinaryNode<T> rootNode, QueueInterface<T> queue){
         if (rootNode != null){
-            postOrderTraverse(rootNode.getLeftChild());
-            postOrderTraverse(rootNode.getRightChild());
-            System.out.println(rootNode.getData());
+            postOrderTraverse(rootNode.getLeftChild(),queue);
+            postOrderTraverse(rootNode.getRightChild(),queue);
+            queue.enqueue(rootNode.getData());
         }
+        return queue;
+    }
+    
+    //Traverses the BST with levelorder traversal.
+    public QueueInterface<T> levelOrderTraversal(){
+    	QueueInterface<T> queue = new ArrayQueue<>();
+        return levelOrderTraverse(rootNode,queue);
+        
+    }
+    
+    private QueueInterface<T> levelOrderTraverse(BinaryNode<T> rootNode, QueueInterface<T> returnQueue){
+        QueueInterface<BinaryNode<T>> queue = new ArrayQueue<>();
+        queue.enqueue(rootNode);
+        while(!queue.isEmpty()){
+            BinaryNode<T> temp = queue.dequeue();
+            returnQueue.enqueue(temp.getData());
+            if(temp.hasLeftChild()){
+                queue.enqueue(temp.getLeftChild());
+            }
+            if(temp.hasRightChild()){
+                queue.enqueue(temp.getRightChild());
+            }
+        }
+        return returnQueue;
     }
 
 }
-
-

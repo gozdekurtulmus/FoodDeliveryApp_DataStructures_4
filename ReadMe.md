@@ -1,8 +1,8 @@
 # CENG 112 - Data Structures
 
-# Assignment 4:Food Delivery Application
+# Food Delivery Application
 
-Inthishomework,youareexpectedtoimplementa“FoodDeliveryApplication”usingJava.
+In this homework, you are expected to implement a “Food Delivery Application” using Java.
 This homework will cover the topics given below:
 
 ```
@@ -11,8 +11,8 @@ This homework will cover the topics given below:
 3) Iterators, Comparators
 4) Binary Search Trees
 ```
-Assumethatyouaredesigningafooddeliveryapplicationthatrunsasamarketplacefor
-localrestaurants.Therestaurantsandfoodsareplacedinseveralbinarysearchtreeswith
+Assume that you are designing a food delivery application that runs as a marketplace for
+local restaurants. The restaurants and foods are placed in several binary search trees with
 respect to different attributes such as price, stock,restaurant rating, and delivery time.
 
 Implement a **_Restaurant_** class that includes but isnot limited to:
